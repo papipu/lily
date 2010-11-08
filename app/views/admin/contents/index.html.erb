@@ -1,0 +1,31 @@
+<% if @contents.size>0 %>
+  <table id="content_list">
+    <% counter=0 %>
+    <tr>
+      <td></td>
+      <td>заголовок</td>
+      <td>родитель</td>
+      <td class="methods">действия</td>
+    </tr>
+    <% @contents.each do |content| %>
+      <% counter+=1 %>
+      <tr <%= counter%2==1 ? 'class="first"' : nil%>>
+        <td><%= counter %></td>
+        <td><%= content.title %></td>
+        <td><%= @parents[content.parent] %></td>
+        <td class="methods">
+          <%= link_to 'показать', admin_content_path(content) %>
+          <%= link_to 'изменить', edit_admin_content_path(content) %>
+          <%  if @current_user.group=='2' %>
+            <%= link_to 'удалить', admin_content_path(content),
+              :confirm => 'Вы уверены?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>
+    Нет записей о страницах. <%= link_to 'добавить страницу', new_admin_content_path %>
+  </p>
+<% end %>

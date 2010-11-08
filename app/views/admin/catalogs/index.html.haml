@@ -1,0 +1,21 @@
+-if @catalogs.size>0
+ %table#catalog_list
+  %tr
+   %td
+   %td название
+   %td.methods действия
+  -counter=0
+  -@catalogs.each do |catalog|
+   -counter+=1
+   -css_class = counter%2==1 ? 'first' : 'second'
+   %tr{:class=>css_class}
+    %td= counter
+    %td= catalog.title
+    %td.methods
+     = link_to 'показать', admin_catalog_path(catalog)
+     = link_to 'изменить', edit_admin_catalog_path(catalog)
+     = link_to 'удалить', admin_catalog_path(catalog), :confirm => 'Вы уверены?', :method => :delete
+-else
+ %p
+  Нет записей о каталогах.
+  = link_to 'добавить каталог', new_admin_catalog_path

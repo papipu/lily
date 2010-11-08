@@ -1,0 +1,8 @@
+<% if @user.avatar.exists? %>
+<p style="float:left">
+  <%= image_tag @user.avatar.url(:medium)%>
+</p>
+<% end  %>
+<p>логин : <%= @user.login %></p>
+<p>e-mail : <%= @user.email %></p>
+<p>группа : <%= @user.group=='1' ? 'администраторы' : @user.group=='2' ? 'разработчики' : 'пользователи' %></p>

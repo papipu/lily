@@ -1,0 +1,14 @@
+class CreateComments < ActiveRecord::Migration
+  def self.up
+    create_table :comments do |t|
+      t.text :text
+      t.string :name, :limit =>30
+      t.string :comment_type, :limit=>10
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :comments
+  end
+end

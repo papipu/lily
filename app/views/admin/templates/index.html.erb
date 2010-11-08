@@ -1,0 +1,18 @@
+<table id="file_list">
+  <% counter=0 %>
+  <tr>
+    <td></td>
+    <td>название</td>
+    <td class="methods">действия</td>
+  </tr>
+  <% @templates.each do |template| %>
+    <% counter+=1 %>
+    <tr <%= counter%2==1 ? 'class="first"' : nil%>>
+      <td><%= counter %></td>
+      <td><%= template[:title] %></td>
+      <td class="methods">
+        <%= link_to 'изменить', :action=>'edit',:id=>template[:id] %>
+      </td>
+    </tr>
+  <% end %>
+</table>

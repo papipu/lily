@@ -1,0 +1,32 @@
+<% form_for @content, :url => { :action => "create" } do |f| %>
+  <p>
+    <%= f.error_messages %>
+  </p>
+  <p>
+    <label for="title">заголовок</label>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <label for="uri">uri</label>
+    <%= f.text_field :uri %>
+  </p>
+  <p>
+    <label for="keywords">ключевые слова</label>
+    <%= f.text_field :keywords %>
+  </p>
+  <p>
+    <label for="description">описание</label>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <label for="parent">родительская страница</label>
+    <%= f.select :parent, @parents %>
+  </p>
+  <p>
+    <label for="text">страница</label>
+    <%= f.text_area :text, :class => "ckeditor" %>
+  </p>
+  <p>
+    <%= f.submit 'добавить' %>
+  </p>
+<% end %>

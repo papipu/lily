@@ -1,0 +1,18 @@
+<% if @photos.size>0 %>
+  <% @photos.each do |photo| %>
+    <div style="float:left;margin:10px; ">
+      <div class="photo_container">
+        <a class="image" href="<%=  photo.image.url(:medium)%>">
+        <%= image_tag photo.image.url(:small), :class=>'photo'%>
+        </a>
+      </div>
+      <%= link_to 'удалить', admin_photo_path(photo),
+        :confirm => 'Вы уверены?', :method => :delete %>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+<% else %>
+  <p>
+    Нет фотографий данного комплекта. <%= link_to 'загрузить', :action=>'new', :complect=>params[:id] %>
+  </p>
+<% end %>

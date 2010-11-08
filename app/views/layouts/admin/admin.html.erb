@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+  <head>
+    <title>papipu | панель администратора</title>
+    <%= stylesheet_link_tag 'admin' %>
+    <%= stylesheet_link_tag 'lightbox' %>
+  </head>
+  <body>
+    <div id="header">
+      <div id="logo"><span>papipu</span> | панель администратора</div>
+      <% if flash[:notice] then %><div id="flash_notice"><%= flash[:notice] %></div><% end %>
+      <div id="login">
+        <%= @current_user.login %> |
+        <a href="/">перейти к сайту</a> |
+        <%= link_to "выйти", :controller=>'auth',:action=>'logout' %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="container">
+      <div id="main_menu">
+        <div <%= 'class="active"'  if current_page?(:controller=>'dashboard') %>>
+          <%= link_to_unless_current "главная", :controller=>'dashboard' %>
+        </div>
+        <div <%= 'class="active"'  if current_page?(admin_catalogs_path) %>>
+          <%= link_to_unless_current "каталоги", admin_catalogs_path %>
+        </div>
+        <div <%= 'class="active"'  if current_page?(admin_contents_path) %>>
+          <%= link_to_unless_current "страницы", admin_contents_path %>
+        </div>
+        <div <%= 'class="active"'  if current_page?(admin_users_path) %>>
+          <%= link_to_unless_current "пользователи", admin_users_path %>
+        </div>
+        <div <%= 'class="active"'  if current_page?(admin_settings_path) %>>
+          <%= link_to_unless_current "настройки", admin_settings_path %>
+        </div>
+        <% if @current_user.group=='2' %>
+          <div <%= 'class="active"'  if current_page?(:controller=>'templates') %>>
+            <%= link_to_unless_current "шаблоны", :controller=>'templates' %>
+          </div>
+        <% end %>
+      </div>
+      <div id="content">
+        <div class="line"></div>
+        <div class="caption">
+          <%= @title ? @title : nil %>
+          <div class="actions">
+            <% if @actions %>
+              <% @actions.each do |action| %>
+                <%=  link_to action[:title], action[:url] %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div id="page">
+          <%= yield %>
+        </div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("jquery", "1.4.2");
+  </script>
+  <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
+  <%= javascript_include_tag 'ckeditor/adapters/jquery.js' %>
+  <%= javascript_include_tag 'lightbox' %>
+  <%= javascript_include_tag :defaults %>
+</html>

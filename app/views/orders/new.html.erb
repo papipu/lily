@@ -1,0 +1,12 @@
+<h1>Оформление заказа</h1>
+<div id="order_form">
+  <% form_for @order do |f| %>
+    <p><%= f.error_messages %></p>
+    <p>
+      <label for="address">адрес *</label>
+      <%= f.text_field :address %>
+    </p>
+    <p>* - обязательные поля</p>
+    <p><%= f.submit 'оформить' %></p>
+  <% end %>
+</div>

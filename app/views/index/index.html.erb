@@ -1,0 +1,30 @@
+<h1 style="font-size: 31px; font-style: italic; ">
+  Супер <br />
+  <span style="padding-left:70px;">предложения</span>
+</h1>
+<div id="catalog">
+  <% @complects.each do |complect| %>
+    <% price = complect.price==nil ? 0 : complect.price %>
+    <div class='item'>
+      <div class='img'>
+        <% if complect.image.exists? %>
+          <a class='image' href="<%= complect.image.url(:medium)%>">
+            <%= image_tag complect.image.url(:small)%>
+          </a>
+        <%  else %>
+          <%= image_tag 'no_photo.jpg' %>
+        <% end  %>
+        <div class='price'><%= price %> <span>руб.</span> </div>
+      </div>
+      <div class='title'><%= link_to complect.title, complect_path(complect) %></div>
+      <div class='to_trash'>
+        <%=  link_to_remote 'в корзину',
+          :url=>url_for(:controller=>'complects',:action=>'trash',:id=>complect.id),:update=>'flash_notice' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>
+<h1 style="padding-bottom: 3px;">Интернет-магазин</h1>
+<h1 style="padding-left: 150px;padding-top: 0px;">Lily De Valleys</h1>
+<%= @content.text %>

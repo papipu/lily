@@ -1,0 +1,9 @@
+<div id="send_mail_form">
+  <% form_tag do %>
+    <p>
+      <label for="message">сообщение</label>
+      <%= text_area :message, params[:message] %>
+    </p>
+    <%= submit_tag "отправить" %>
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+-form_for @catalog, :url => { :action => 'create' } do |f|
+  %p= f.error_messages
+  %p
+    %label{:for=>'title'} заголовок
+    = f.text_field :title
+  %p= f.submit 'добавить'

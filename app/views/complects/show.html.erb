@@ -1,0 +1,10 @@
+<h1><%= @complect.title %></h1>
+<% if @complect.image.exists? %>
+  <p style="float:left; margin-left: 20px;"><%= image_tag @complect.image.url(:medium)%></p>
+<% end  %>
+<div class="clear"></div>
+<% if @complect.description %>
+  <div>
+    <%= @complect.description %>
+  </div>
+<% end  %>

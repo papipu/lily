@@ -1,0 +1,28 @@
+<% form_for @user, :url => { :action => "update" }, :html => { :multipart => true } do |f| %>
+  <p>
+    <%= f.error_messages %>
+  </p>
+  <p>
+    <label for="login">логин</label>
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <label for="email">e-mail</label>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <label for="group">группа</label>
+    <%= f.select :group, @groups,:selected => @user.group.to_i %>
+  </p>
+  <p>
+    <label for="name">фамилия, имя</label>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <label for="avatar">аватар</label>
+    <%= f.file_field :avatar %>
+  </p>
+  <p>
+    <%= f.submit 'изменить' %>
+  </p>
+<% end %>

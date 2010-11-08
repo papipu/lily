@@ -1,0 +1,30 @@
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-05-11 01:56:22) [GET]
+Redirected to http://magaz/auth/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 198ms (DB: 184) | 302 Found [http://magaz/users/]
+
+
+Processing AuthController#login (for 127.0.0.1 at 2010-05-11 01:56:22) [GET]
+Rendering template within layouts/auth
+Rendering auth/login
+Completed in 17ms (View: 14, DB: 0) | 200 OK [http://magaz/auth/login]
+
+
+Processing AuthController#login (for 127.0.0.1 at 2010-05-11 01:56:30) [POST]
+  Parameters: {"commit"=>"OK", "authenticity_token"=>"KPWaW7wwk26aHjn371hLQNlXuoY9pWxxrthw5tppqwY=", "login"=>"valmon", "password"=>"mustdie"}
+Redirected to http://magaz/users
+Completed in 33ms (DB: 0) | 302 Found [http://magaz/auth/login]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-05-11 01:56:30) [GET]
+Rendering template within layouts/application
+Rendering users/index
+Completed in 14ms (View: 9, DB: 0) | 200 OK [http://magaz/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-05-11 01:56:49) [GET]
+Rendering template within layouts/application
+Rendering users/index
+Completed in 9ms (View: 6, DB: 0) | 200 OK [http://magaz/users]

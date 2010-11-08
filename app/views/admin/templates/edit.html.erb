@@ -1,0 +1,14 @@
+<% form_tag do %>
+  <p><%= text_area_tag :textfile,@textfile %></p>
+  <p><%= submit_tag 'сохранить' %></p>
+<% end %>
+<script src="/javascripts/codemirror/codemirror.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var editor = CodeMirror.fromTextArea('textfile', {
+    height: "500px",
+    parserfile: "parsexml.js",
+    stylesheet: "/stylesheets/codemirror/xmlcolors.css",
+    path: "/javascripts/codemirror/",
+    continuousScanning: 500
+  });
+</script>

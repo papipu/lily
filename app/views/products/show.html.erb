@@ -1,0 +1,9 @@
+<% if @product.complect.image.exists? %>
+  <p style="float:left"><%= image_tag @product.complect.image.url(:medium)%></p>
+<% end  %>
+<p>название : <%= @product.title %></p>
+<p>цена : <%= @product.price %></p>
+<% if @product.complect.description %>
+  <p>описание : <%= @product.complect.description %></p>
+<% end  %>
+<div class="clear"></div>

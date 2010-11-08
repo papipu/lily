@@ -1,0 +1,8 @@
+<p>название : <%= @product.title %></p>
+<p>цена : <%= @product.price %></p>
+<p>комплект : <%= @product.complect ? @product.complect.title : 'отсутствует' %></p>
+<p>состав ткани : <%= @product.composition %></p>
+<p>основной цвет : <%= @product.first_color %></p>
+<p>цвет отделки : <%= @product.second_color %></p>
+<p>размер, см : <%= @product.size %></p>
+<div class="clear"></div>

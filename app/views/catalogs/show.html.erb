@@ -1,0 +1,27 @@
+<h1><%= @title %></h1>
+<div id="catalog">
+  <% if @products %>
+    <% @products.each do |product| %>
+      <% price = product.price==nil ? 0 : product.price %>
+      <div class='item'>
+        <div class='img'>
+          <% if product.complect.image.exists? %>
+            <a class='image' href="<%= product.complect.image.url(:medium)%>">
+              <%= image_tag product.complect.image.url(:small)%>
+            </a>
+          <%  else %>
+            <%= image_tag 'no_photo.jpg' %>
+          <% end  %>
+          <div class='price'><%= price %> <span>руб.</span> </div>
+        </div>
+        <div class='title'><%= link_to product.title, product_path(product) %></div>
+        <div class='to_trash'>
+          <%=  link_to_remote 'в корзину',
+            :url=>url_for(:controller=>'products',:action=>'trash',:id=>product.id),:update=>'flash_notice' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="clear"></div>
+

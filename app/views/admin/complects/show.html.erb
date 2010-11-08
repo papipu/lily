@@ -1,0 +1,48 @@
+<% if @complect.image.exists? %>
+  <p style="float:right; margin-left: 20px;">
+    <a class="image" href="<%= @complect.image.url(:medium)%>">
+      <%= image_tag @complect.image.url(:medium), :class=>'photo'%>
+    </a>
+  </p>
+<% end  %>
+<% if @complect.description %>
+  <div style="margin-bottom:15px;width:450px;">
+    <h1 style="border-bottom: 1px solid gray;padding-bottom: 5px;">Описание комплекта "<%= @complect.title %>"</h1>
+    <%= @complect.description %>
+  </div>
+<% end  %>
+<div class="clear"></div>
+<h1 style="border-bottom: 1px solid gray;padding-bottom: 5px;">Товары</h1>
+<% if @complect.products.size>0 %>
+  <table id="product_list">
+    <% counter=0 %>
+    <tr>
+      <td></td>
+      <td>название</td>
+      <td>размер</td>
+      <td>цена, руб</td>
+      <td class="methods">действия</td>
+    </tr>
+    <% @complect.products.each do |product| %>
+      <% counter+=1 %>
+      <tr <%= counter%2==1 ? 'class="first"' : nil%>>
+        <td><%= counter %></td>
+        <td><%= product.title %></td>
+        <td><%= product.size %></td>
+        <td><%= product.price %></td>
+        <td class="methods">
+          <%= link_to 'показать', admin_product_path(product) %>
+          <%= link_to 'изменить', edit_admin_product_path(product) %>
+          <%= link_to 'удалить', admin_product_path(product),
+            :confirm => 'Вы уверены?', :method => :delete %><br />
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>
+    Нет записей о товарах.
+    <%= link_to 'добавить товар',
+      url_for(:controller=>'products',:action=>'new',:complect=>@complect.id,:catalog=>@complect.catalog.id) %>
+  </p>
+<% end %>

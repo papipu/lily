@@ -1,0 +1,26 @@
+%table#dashboard
+ %tr
+  %td
+   .block
+    = image_tag 'admin_users.png'
+    = link_to 'управление пользователями', :controller=>'users'
+    %ul
+     %li= link_to 'добавить пользователя', :controller=>'users',:action=>'new'
+     %li= link_to 'рассылка сообщений', :controller=>'users',:action=>'mail'
+  %td
+   .block
+    = image_tag 'admin_magazine.png'
+    = link_to "интернет магазин", admin_products_path
+    %ul
+     %li= link_to 'добавить каталог', :controller=>'catalogs',:action=>'new'
+     %li= link_to 'добавить комплект', :controller=>'complects',:action=>'new'
+     %li= link_to 'добавить товар', :controller=>'products',:action=>'new'
+ %tr
+  %td
+   .block
+    = image_tag 'admin_settings.png'
+    = link_to 'настройки сайта', :controller=>'settings'
+  %td
+   .block
+    = image_tag 'admin_log.png'
+    = link_to "отчеты и статистика"

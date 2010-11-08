@@ -1,0 +1,29 @@
+<h1 style="border-bottom: 1px solid gray;padding-bottom: 5px;">Комплекты в каталоге "<%= @catalog.title %>"</h1>
+<% if @catalog.complects.size>0 %>
+  <table id="complect_list">
+    <% counter=0 %>
+    <tr>
+      <td></td>
+      <td>название</td>
+      <td class="methods">действия</td>
+    </tr>
+    <% @catalog.complects.each do |complect| %>
+      <% counter+=1 %>
+      <tr <%= counter%2==1 ? 'class="first"' : nil%>>
+        <td><%= counter %></td>
+        <td><%= complect.title %></td>
+        <td class="methods">
+          <%= link_to 'фотографии', :controller=>'photos',:action=>'show',:id=>complect.id %>
+          <%= link_to 'показать', admin_complect_path(complect) %>
+          <%= link_to 'изменить', edit_admin_complect_path(complect) %>
+          <%= link_to 'удалить', admin_complect_path(complect),
+            :confirm => 'Вы уверены?', :method => :delete %><br />
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>
+    Нет записей о комплектах. <%= link_to 'добавить комплект', new_admin_complect_path %>
+  </p>
+<% end %>

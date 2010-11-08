@@ -1,0 +1,33 @@
+<% if @settings.size>0 %>
+  <table id="setting_list">
+    <% counter=0 %>
+    <tr>
+      <td></td>
+      <td>название</td>
+      <td>значение</td>
+      <td class="methods">действия</td>
+    </tr>
+    <% @settings.each do |setting| %>
+      <% counter+=1 %>
+      <tr <%= counter%2==1 ? 'class="first"' : nil%>>
+        <td><%= counter %></td>
+        <td><%= setting.title %></td>
+        <td><%= setting.value %></td>
+        <td class="methods">
+          <%= link_to 'изменить', edit_admin_setting_path(setting) %>
+          <% if @current_user.group=='2' %>
+            <%= link_to 'удалить', admin_setting_path(setting),
+              :confirm => 'Вы уверены?', :method => :delete %>
+          <% end  %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>
+    Нет записей о конфигурационных параметрах.
+    <% if @current_user.group=='2' %>
+      <%= link_to 'добавить параметр', new_admin_setting_path %>
+    <% end  %>
+  </p>
+<% end %>
