@@ -3,7 +3,6 @@ class Complect < ActiveRecord::Base
   has_many :products
   has_many :photos
   validates_presence_of :title
-  typograf :description, :use_br => false
   has_attached_file :image,
     :styles => {
     :big => "1200x1200>",
@@ -11,3 +10,4 @@ class Complect < ActiveRecord::Base
     :small => "148x148>"
   }
 end
+
