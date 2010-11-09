@@ -83,11 +83,6 @@ ActiveRecord::Schema.define(:version => 20100725080939) do
     t.integer  "complect_id"
   end
 
-  create_table "reviews", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "settings", :force => true do |t|
     t.string   "title"
     t.string   "name"
